@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f9fafb;
+  --foreground: #0f172a;
+  --brand: #10b981;
+  --brand-dark: #059669;
+  --brand-light: #d1fae5;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: 'cv11', 'ss01', 'ss02';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle dotted background texture — ScrapUncle has a clean feel */
+.dotted-bg {
+  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scanning laser line */
+.scan-laser {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.3) 20%,
+    rgba(16, 185, 129, 1) 50%,
+    rgba(16, 185, 129, 0.3) 80%,
+    transparent 100%);
+  box-shadow: 0 0 16px 2px rgba(16, 185, 129, 0.6);
+  animation: scan-line 2s ease-in-out infinite;
+}
+
+/* Corner brackets on scanner viewfinder */
+.corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #10b981;
+  border-radius: 4px;
+}
+.corner.tl { top: -3px; left: -3px; border-right: none; border-bottom: none; border-top-left-radius: 12px; }
+.corner.tr { top: -3px; right: -3px; border-left: none; border-bottom: none; border-top-right-radius: 12px; }
+.corner.bl { bottom: -3px; left: -3px; border-right: none; border-top: none; border-bottom-left-radius: 12px; }
+.corner.br { bottom: -3px; right: -3px; border-left: none; border-top: none; border-bottom-right-radius: 12px; }
+
+/* Button tap feedback */
+.btn-tap {
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+.btn-tap:active {
+  transform: scale(0.97);
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+
+/* Verdict color utilities — applied dynamically */
+.verdict-sell   { --v: #10b981; --v-bg: #ecfdf5; --v-border: #a7f3d0; }
+.verdict-maybe  { --v: #f59e0b; --v-bg: #fffbeb; --v-border: #fde68a; }
+.verdict-scrap  { --v: #ef4444; --v-bg: #fef2f2; --v-border: #fecaca; }
