@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
+import { LangProvider } from '@/contexts/LangContext';
 import './globals.css';
 
 const inter = Inter({
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <LangProvider>{children}</LangProvider>
       </body>
     </html>
   );

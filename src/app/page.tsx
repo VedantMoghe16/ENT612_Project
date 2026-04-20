@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Scanner } from '@/components/Scanner';
 import { ResultCard } from '@/components/ResultCard';
 import { ManualMrpEntry } from '@/components/ManualMrpEntry';
+import { useLang } from '@/contexts/LangContext';
 import {
   calculatePrice,
   type AreaType, type Condition, type Category, type PriceBreakdown,
@@ -30,6 +31,7 @@ interface ScanData {
 }
 
 export default function Home() {
+  const { t } = useLang();
   const [state, setState] = useState<ScanState>('idle');
   const [area, setArea] = useState<AreaType>('normal');
   const [condition, setCondition] = useState<Condition>('good');
@@ -89,10 +91,10 @@ export default function Home() {
         return;
       }
 
-      setErrorMsg(data.message ?? 'Something went wrong. Try again.');
+      setErrorMsg(data.message ?? t('err.generic'));
       setState('idle');
     } catch (err: any) {
-      setErrorMsg(err?.message ?? 'Network error. Check your connection.');
+      setErrorMsg(err?.message ?? t('err.network'));
       setState('idle');
     }
   }, [area, condition]);
@@ -172,7 +174,7 @@ export default function Home() {
         {state !== 'result' && (
           <div className="px-5 py-8 text-center">
             <p className="text-[11px] text-gray-400 font-medium">
-              KitaabValue · Built for Indian book dealers
+              {t('footer')}
             </p>
           </div>
         )}

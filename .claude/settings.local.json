@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(curl -s -X POST https://api.sarvam.ai/text-to-speech -H 'Content-Type: application/json' -H 'api-subscription-key: sk_l48hhmbp_lAATYpFd51dkMHiS20cHLL5g' -d '{\"inputs\":[\"Good book. Pay the seller 150 rupees.\"],\"target_language_code\":\"hi-IN\",\"speaker\":\"meera\",\"pitch\":0,\"pace\":1.0,\"loudness\":1.5,\"speech_sample_rate\":22050,\"enable_preprocessing\":true,\"model\":\"bulbul:v1\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('keys:', list\\(d.keys\\(\\)\\)\\); print\\('audio_len:', len\\(d.get\\('audios',['']\\)[0]\\) if 'audios' in d else 'N/A'\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2\\)[:500]\\)\")",
+      "Bash(curl -s -X POST https://api.sarvam.ai/text-to-speech -H 'Content-Type: application/json' -H 'api-subscription-key: sk_l48hhmbp_lAATYpFd51dkMHiS20cHLL5g' -d '{\"inputs\":[\"अच्छी किताब है। विक्रेता को 150 रुपये दें।\"],\"target_language_code\":\"hi-IN\",\"speaker\":\"anushka\",\"pitch\":0,\"pace\":1.0,\"loudness\":1.5,\"speech_sample_rate\":22050,\"enable_preprocessing\":true,\"model\":\"bulbul:v1\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); k=list\\(d.keys\\(\\)\\); print\\('keys:',k\\); print\\('audio_len:', len\\(d.get\\('audios',['']\\)[0]\\)\\) if 'audios' in d else print\\('error:',d\\)\")",
+      "Bash(curl -s -X POST https://api.sarvam.ai/text-to-speech -H 'Content-Type: application/json' -H 'api-subscription-key: sk_l48hhmbp_lAATYpFd51dkMHiS20cHLL5g' -d '{\"inputs\":[\"अच्छी किताब है। विक्रेता को 150 रुपये दें।\"],\"target_language_code\":\"hi-IN\",\"speaker\":\"anushka\",\"pitch\":0,\"pace\":1.0,\"loudness\":1.5,\"speech_sample_rate\":22050,\"enable_preprocessing\":true,\"model\":\"bulbul:v2\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); k=list\\(d.keys\\(\\)\\); print\\('keys:',k\\); print\\('audio_b64_len:', len\\(d.get\\('audios',['']\\)[0]\\)\\) if 'audios' in d else print\\('error:',d\\)\")"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "databricks",
+    "code-review-graph"
+  ]
+}

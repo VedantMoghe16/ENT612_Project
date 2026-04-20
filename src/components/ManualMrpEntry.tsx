@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLang } from '@/contexts/LangContext';
 
 interface Props {
   ocrText?: string;
@@ -11,6 +12,7 @@ interface Props {
 
 export function ManualMrpEntry({ title, onSubmit, onCancel }: Props) {
   const [value, setValue] = useState('');
+  const { t } = useLang();
   const v = parseInt(value, 10);
   const valid = !isNaN(v) && v >= 20 && v <= 5000;
 
@@ -24,34 +26,34 @@ export function ManualMrpEntry({ title, onSubmit, onCancel }: Props) {
             </svg>
           </div>
           <div>
-            <h3 className="font-display font-extrabold text-lg text-gray-900">MRP Not Detected</h3>
-            <p className="text-xs text-gray-500">Please enter it manually</p>
+            <h3 className="font-display font-extrabold text-lg text-gray-900">{t('manual.title')}</h3>
+            <p className="text-xs text-gray-500">{t('manual.sub')}</p>
           </div>
         </div>
 
         {title && (
           <div className="bg-gray-50 rounded-xl p-3 mb-4">
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">We could read</p>
+            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{t('manual.weRead')}</p>
             <p className="text-sm font-semibold text-gray-800 mt-0.5 truncate">{title}</p>
           </div>
         )}
 
         <label className="block">
-          <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Printed MRP (₹)</span>
+          <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">{t('manual.label')}</span>
           <div className="mt-2 relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-display font-bold text-gray-400">₹</span>
             <input
               type="number"
               inputMode="numeric"
               autoFocus
-              placeholder="e.g. 450"
+              placeholder={t('manual.placeholder')}
               value={value}
               onChange={(e) => setValue(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter' && valid) onSubmit(v); }}
               className="w-full pl-12 pr-4 py-4 text-2xl font-display font-bold border-2 border-gray-200 rounded-2xl focus:border-brand-500 focus:outline-none tabular-nums"
             />
           </div>
-          <p className="text-[11px] text-gray-400 mt-1.5">Look for &quot;M.R.P.&quot; or &quot;₹&quot; on the back cover</p>
+          <p className="text-[11px] text-gray-400 mt-1.5">{t('manual.hint')}</p>
         </label>
 
         <div className="grid grid-cols-2 gap-2 mt-5">
@@ -59,14 +61,14 @@ export function ManualMrpEntry({ title, onSubmit, onCancel }: Props) {
             onClick={onCancel}
             className="btn-tap py-3.5 rounded-2xl font-bold text-gray-700 bg-gray-100 hover:bg-gray-200"
           >
-            Cancel
+            {t('manual.cancel')}
           </button>
           <button
             onClick={() => valid && onSubmit(v)}
             disabled={!valid}
             className="btn-tap py-3.5 rounded-2xl font-bold text-white bg-brand-600 hover:bg-brand-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
-            Calculate Price
+            {t('manual.calculate')}
           </button>
         </div>
       </div>
